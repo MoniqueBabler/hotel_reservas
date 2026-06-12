@@ -1,0 +1,292 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Garante que o corpo tenha no mínimo a altura da tela */
+  font-family: "Courier New", Courier, monospace; 
+  background-color: #fafafa;
+  display: flex; /* Alinha o menu e o conteúdo lado a lado perfeitamente */
+}
+
+/* Força o HTML a também ocupar toda a altura */
+html {
+  height: 100%;
+}
+
+.menu-lateral {
+  width: 250px;
+  min-height: 100vh; /* Faz o menu ir até o final da tela, mesmo se tiver rolagem */
+  background-color: #0f172a; 
+  color: #ffffff;
+  flex-shrink: 0; /* Impede o menu de amassar em telas menores */
+}
+
+.logo-area {
+  padding: 20px;
+  background-color: #020617;
+  text-align: center;
+}
+
+.logo-area h1 {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 0; /* Remove margens padrões que desalinhavam o topo */
+}
+
+.navegacao-abas {
+  padding: 20px 10px;
+}
+
+.link-aba {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 5px;
+  background: none;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  box-sizing: border-box; /* Garante que o padding não estoure a largura do menu */
+}
+
+.link-aba:hover {
+  border-color: #334155;
+  color: #ffffff;
+}
+
+.link-aba.ativo {
+  background-color: #38bdf8; 
+  color: #0f172a;
+  font-weight: bold;
+}
+
+.conteudo-janela {
+  flex-grow: 1; /* Faz a área de conteúdo ocupar todo o espaço restante */
+  padding: 30px;
+  min-height: 100vh;
+  box-sizing: border-box; /* Evita barras de rolagem desnecessárias por conta do padding */
+}
+
+.titulo-secao {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 3px double #0f172a;
+}
+
+.sub-texto {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.tabela-dados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background-color: #ffffff;
+}
+
+.tabela-dados th {
+  background-color: #0f172a;
+  color: #ffffff;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #0f172a;
+}
+
+.tabela-dados td {
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-principal {
+  background-color: #38bdf8;
+  color: #0f172a;
+  border: 1px solid #0f172a;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-principal:hover {
+  background-color: #0ea5e9;
+}
+
+.btn-secundario {
+  background-color: #e2e8f0;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.btn-perigo {
+  background-color: #ef4444;
+  color: #ffffff;
+  border: 1px solid #991b1b;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.btn-ver-reservas {
+  background-color: #0f172a;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.botao-excluir-linha {
+  background: none;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.caixa-formulario {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 25px;
+  max-width: 500px;
+}
+
+.linha-form {
+  margin-bottom: 15px;
+}
+
+.linha-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.linha-form input, 
+.linha-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+  box-sizing: border-box; /* Impede que inputs saiam para fora do formulário */
+}
+
+.bloco-botoes {
+  margin-top: 20px;
+}
+
+.fundo-alerta {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999; /* Garante que o modal fique por cima de tudo */
+}
+
+.caixa-confirmar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border: 2px solid #0f172a;
+  width: 300px;
+  text-align: center;
+}
+/* Fundo que cobre toda a tela */
+.modal-fundo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro semi-transparente */
+  backdrop-filter: blur(4px); /* Efeito de desfoque ao fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Caixa branca do modal */
+.modal-conteudo {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: abrirModal 0.3s ease-out;
+}
+
+/* Ícone de alerta */
+.modal-icone {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.modal-conteudo h2 {
+  margin: 0 0 10px 0;
+  color: #1e293b;
+  font-family: sans-serif;
+}
+
+.modal-conteudo p {
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  font-family: sans-serif;
+}
+
+/* Área dos botões */
+.modal-botoes {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Botões base */
+.modal-botoes button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cancelar {
+  background-color: #e2e8f0;
+  color: #475569;
+}
+
+.btn-cancelar:hover {
+  background-color: #cbd5e1;
+}
+
+.btn-deletar {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.btn-deletar:hover {
+  background-color: #dc2626;
+}
+
+/* Animação de entrada */
+@keyframes abrirModal {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

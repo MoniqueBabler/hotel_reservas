@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sistema Geral - Hotelaria</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="menu-lateral">
+    <div class="logo-area">
+      <h1>Hotel Reservas</h1>
+    </div>
+    <div class="navegacao-abas">
+      <button class="link-aba ativo" id="aba-quartos" onclick="mudarPainel('secao-quartos-lista')">🏠 Quartos</button>
+      <button class="link-aba" id="aba-reservas" onclick="mudarPainel('secao-total-reservas')">📅 Reservas</button>
+      <button class="link-aba" id="aba-sobre">ℹ️ Sobre</button>
+    </div>
+  </div>
+
+  <div class="conteudo-janela">
+
+    <div id="secao-total-reservas" style="display:none;">
+      <div class="titulo-secao">
+        <h2>Todas as Reservas</h2>
+        <p class="sub-texto">Reservas cadastradas no sistema</p>
+      </div>
+      <table class="tabela-dados">
+        <thead>
+          <tr>
+            <th>Hóspede</th>
+            <th>Quarto</th>
+            <th>Entrada</th>
+            <th>Saída</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-todas-corpo">
+          <tr><td>Carregando</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="secao-quartos-lista">
+      <div class="titulo-secao">
+        <h2>Quartos Cadastrados</h2>
+        <p class="sub-texto">Gerenciador hotel</p>
+        <button class="btn-principal" onclick="mudarPainel('secao-quarto-novo')">+ Novo Quarto</button>
+      </div>
+      <table class="tabela-dados">
+        <thead>
+          <tr>
+            <th>Nº Quarto</th>
+            <th>Tipo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-quartos-corpo">
+          <tr><td>Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="secao-quarto-novo" style="display:none;">
+      <div class="caixa-formulario">
+        <h2>Cadastro de Quarto</h2>
+        <p class="sub-texto">Informe os dados do novo quarto</p>
+        
+        <p class="linha-form">
+          <label>Número do Quarto</label>
+          <input type="text" id="txt-num-quarto" />
+        </p>
+        
+        <p class="linha-form">
+          <label>Tipo do Quarto</label>
+          <select id="select-categoria-quarto">
+            <option value="">Selecione o tipo</option>
+            <option value="Standard">cobertura</option>
+            <option value="Luxo">suite</option>
+            <option value="Suite">simples</option>
+          </select>
+        </p>
+        
+        <div class="bloco-botoes">
+          <button class="btn-principal" onclick="gravarQuarto()">🏨 Cadastrar</button>
+          <button class="btn-secundario" onclick="mudarPainel('secao-quartos-lista')">Voltar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="secao-quartos-dados" style="display:none;">
+      <div class="titulo-secao">
+        <h2 id="txt-quarto-selecionado">Reservas do Quarto</h2>
+        <p class="sub-texto" id="info-categoria-quarto">Tipo: </p>
+        <button class="btn-principal" onclick="mudarPainel('secao-reserva-nova')">+ Nova Reserva</button>
+      </div>
+      <table class="tabela-dados">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Hóspede</th>
+            <th>Entrada</th>
+            <th>Saída</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-reservas-corpo">
+          <tr><td>Carregando</td></tr>
+        </tbody>
+      </table>
+      <br>
+      <button class="btn-secundario" onclick="mudarPainel('secao-quartos-lista')">Voltar</button>
+    </div>
+
+    <div id="secao-reserva-nova" style="display:none;">
+      <div class="caixa-formulario">
+        <h2>Cadastro de Reserva</h2>
+        <p class="sub-texto" id="info-reserva-quarto">Quarto: </p>
+        
+        <p class="linha-form">
+          <label>Nome do Hóspede</label>
+          <input type="text" id="txt-hospede-nome" placeholder="Ex: João da Silva" />
+        </p>
+        
+        <p class="linha-form">
+          <label>Data de Entrada</label>
+          <input type="date" id="date-checkin" />
+        </p>
+        
+        <p class="linha-form">
+          <label>Data de Saída</label>
+          <input type="date" id="date-checkout" />
+        </p>
+        
+        <div class="bloco-botoes">
+          <button class="btn-principal" onclick="gravarReserva()">🗓️ Cadastrar Reserva</button>
+          <button class="btn-secundario" onclick="mudarPainel('secao-quartos-dados')">Voltar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="pop-confirmacao" class="fundo-alerta" style="display:none;">
+    <div class="caixa-confirmar">
+      <h3 id="pop-titulo">Excluir</h3>
+      <p id="pop-mensagem">Deseja realmente excluir?</p>
+      <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ccc;">
+      <button class="btn-secundario" onclick="fecharPop()">Cancelar</button>
+      <button id="btn-pop-confirmar" class="btn-perigo">Excluir</button>
+    </div>
+  </div>
+
+  
+  <script src="script.js"></script>
+</body>
+</html>
+
